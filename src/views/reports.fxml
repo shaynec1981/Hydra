@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.CheckComboBox?>
+
+<StackPane fx:id="rootStackPane" minHeight="576.0" minWidth="1024.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportsController">
+   <AnchorPane minHeight="576.0" minWidth="1024.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: DIMGRAY;">
+      <ImageView fx:id="imageBackground" pickOnBounds="true">
+         <Image url="@../images/hydraBG.png" />
+      </ImageView>
+      <SplitPane dividerPositions="0.15" prefHeight="160.0" prefWidth="200.0" style="-fx-background-color: #282321;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </AnchorPane>
+         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
+               <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                  <Button mnemonicParsing="false" onAction="#runReportingButtonPressed" text="Run Reporting" />
+                  <Button mnemonicParsing="false" onAction="#clearReportingButtonPressed" text="Clear Reporting" />
+                  <Button fx:id="openInvoiceButton" mnemonicParsing="false" onAction="#openInvoiceButtonPressed" text="View/Print Invoice" />
+               </HBox>
+               <HBox alignment="CENTER_LEFT" fillHeight="false" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" spacing="10.0">
+                  <ComboBox fx:id="reportCategory1" maxWidth="150.0" onAction="#reportCategory1Changed" prefWidth="150.0" />
+                  <ComboBox fx:id="reportCategory2" maxWidth="150.0" onAction="#reportCategory2Changed" prefWidth="150.0" />
+                  <CheckComboBox fx:id="reportFilterBy" maxWidth="200.0" minWidth="100.0" prefWidth="200.0" />
+                  <VBox fx:id="dateVBox">
+                     <padding>
+                        <Insets bottom="25.0" left="40.0" />
+                     </padding>
+                     <HBox spacing="10.0">
+                        <VBox.margin>
+                           <Insets />
+                        </VBox.margin>
+                        <padding>
+                           <Insets bottom="10.0" />
+                        </padding>
+                        <CheckBox fx:id="todayCheckBox" mnemonicParsing="false" onAction="#todayCheckBoxAction" text="Today" textFill="WHITE" />
+                        <CheckBox fx:id="yesterdayCheckBox" mnemonicParsing="false" onAction="#yesterdayCheckBoxAction" text="Yesterday" textFill="WHITE" />
+                        <CheckBox fx:id="thisMonthCheckBox" mnemonicParsing="false" onAction="#thisMonthCheckBoxAction" text="This Month" textFill="WHITE" />
+                        <CheckBox fx:id="lastMonthCheckBox" mnemonicParsing="false" onAction="#lastMonthCheckBoxAction" text="Last Month" textFill="WHITE" />
+                        <CheckBox fx:id="thisYearCheckBox" mnemonicParsing="false" onAction="#thisYearCheckBoxAction" text="This Year" textFill="WHITE" />
+                        <CheckBox fx:id="allTimeCheckBox" mnemonicParsing="false" onAction="#allTimeCheckBoxAction" text="All Time" textFill="WHITE" />
+                     </HBox>
+                     <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <Label text="From:" textFill="WHITE" />
+                        <DatePicker fx:id="reportDateFrom" />
+                        <Label text="To:" textFill="WHITE" />
+                        <DatePicker fx:id="reportDateTo" />
+                     </HBox>
+                  </VBox>
+               </HBox>
+                <VBox>
+                    <Label fx:id="invoiceHintLabel" text="*Double click row to open invoice." textFill="WHITE"/>
+                    <TableView fx:id="reportResultsTable" VBox.vgrow="ALWAYS">
+                       <columns>
+                           <TableColumn fx:id="column1" prefWidth="75.0"/>
+                           <TableColumn fx:id="column2" prefWidth="75.0"/>
+                           <TableColumn fx:id="column3" prefWidth="75.0"/>
+                           <TableColumn fx:id="column4" prefWidth="75.0"/>
+                           <TableColumn fx:id="column5" prefWidth="75.0"/>
+                           <TableColumn fx:id="column6" prefWidth="75.0"/>
+                           <TableColumn fx:id="column7" prefWidth="75.0"/>
+                           <TableColumn fx:id="column8" prefWidth="75.0"/>
+                       </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+         </AnchorPane>
+      </SplitPane>
+      <StackPane fx:id="stackPaneMenu" alignment="TOP_LEFT" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <Button fx:id="menuButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#menuButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;">
+            <graphic>
+               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/hamburgerMenuButton.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttMainMenu" text="Main Menu" />
+            </tooltip>
+         </Button>
+         <Button fx:id="salesButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#salesButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;" visible="false">
+            <graphic>
+               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/dollarSign.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttSales" text="Sales" />
+            </tooltip>
+         </Button>
+         <Button fx:id="customersButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#customersButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;" visible="false">
+            <graphic>
+               <ImageView pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/customersIcon.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttCustomers" text="Customers" />
+            </tooltip>
+         </Button>
+         <Button fx:id="inventoryButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#inventoryButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;" visible="false">
+            <graphic>
+               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/inventoryIcon.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttInventory" text="Inventory" />
+            </tooltip>
+         </Button>
+         <Button fx:id="reportsButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#reportsButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;" visible="false">
+            <graphic>
+               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/reportsIcon.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttReports" text="Reports" />
+            </tooltip>
+         </Button>
+         <Button fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#settingsButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;" visible="false">
+            <graphic>
+               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/settingsIcon.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttSettings" text="Settings" />
+            </tooltip>
+         </Button>
+      </StackPane>
+      <StackPane fx:id="paneCurrentUser" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <Rectangle arcHeight="30.0" arcWidth="30.0" fill="GREEN" height="100.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+         <VBox alignment="CENTER">
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <Label text="User:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="labelUserName" text="None">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#buttonLogOutPressed" text="Log Out">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+         </VBox>
+      </StackPane>
+   </AnchorPane>
+</StackPane>

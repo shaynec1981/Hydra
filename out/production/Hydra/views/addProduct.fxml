@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.SearchableComboBox?>
+<?import utils.NoPasteTextField?>
+
+<StackPane fx:id="rootStackPane" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddProductController">
+   <AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: DIMGRAY;">
+      <ImageView fx:id="imageBackground" pickOnBounds="true">
+         <Image url="@../images/popupBG.png" />
+      </ImageView>
+   </AnchorPane>
+   <AnchorPane prefHeight="200.0" prefWidth="200.0" translateY="-50.0">
+      <StackPane.margin>
+         <Insets bottom="50.0" left="50.0" right="50.0" top="150.0" />
+      </StackPane.margin>
+      <VBox alignment="CENTER" layoutX="-40.0" minWidth="340.0" prefHeight="317.0" prefWidth="360.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets left="-50.0" right="-50.0" />
+         </padding>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="550.0" spacing="10.0">
+               <VBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="300.0">
+                  <Label text="Name" textFill="WHITE" />
+                  <TextField fx:id="name" promptText="Product Name" />
+               </VBox>
+               <VBox prefHeight="200.0" prefWidth="250.0">
+                  <Label prefHeight="17.0" text="Category" textFill="WHITE" />
+                  <ComboBox fx:id="category" prefWidth="250.0">
+                     <VBox.margin>
+                        <Insets top="2.0" />
+                     </VBox.margin>
+                  </ComboBox>
+               </VBox>
+            </HBox>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="169.0" prefWidth="800.0" spacing="10.0">
+            <VBox prefHeight="95.0" prefWidth="550.0">
+               <Label text="Description" textFill="WHITE" />
+               <TextArea fx:id="description" prefHeight="88.0" prefWidth="356.0" promptText="Product Description" wrapText="true" />
+            </VBox>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="169.0" prefWidth="800.0" spacing="10.0">
+            <VBox prefHeight="95.0" prefWidth="550.0" spacing="5.0">
+               <HBox prefHeight="100.0" prefWidth="420.0" spacing="10.0">
+                  <Label prefWidth="35.0" text="Items" textFill="WHITE" />
+                  <SearchableComboBox fx:id="availableItems" prefWidth="120.0" promptText="Begin Typing To Filter" />
+                  <NoPasteTextField fx:id="itemAmount" prefWidth="60.0" promptText="Amount">
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </NoPasteTextField>
+                  <ComboBox fx:id="itemMeasurement" prefWidth="70.0">
+                     <HBox.margin>
+                        <Insets left="-10.0" top="3.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <Button mnemonicParsing="false" onAction="#addItemPressed" prefWidth="120.0" text="Add Item" />
+                  <Button mnemonicParsing="false" onAction="#deleteItemPressed" prefWidth="120.0" text="Delete Item" />
+               </HBox>
+               <ListView fx:id="listViewItemsInProduct" prefHeight="200.0" prefWidth="200.0" />
+            </VBox>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <VBox prefHeight="200.0" prefWidth="133.0">
+               <Label text="Cost" textFill="WHITE" />
+               <TextField fx:id="cost" editable="false" onKeyTyped="#ProductPrice" prefWidth="200.0" promptText="Product Cost" />
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="133.0">
+               <Label text="Markup %" textFill="WHITE" />
+               <NoPasteTextField fx:id="markup" onKeyTyped="#ProductPrice" promptText="Product Markup" />
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="134.0">
+               <Label text="Product Price" textFill="WHITE" />
+               <TextField fx:id="price" editable="false" promptText="Product Price" />
+            </VBox>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#buttonSubmitPressed" prefHeight="50.0" prefWidth="100.0" text="Submit" />
+            <Button mnemonicParsing="false" onAction="#buttonClearPressed" prefHeight="50.0" prefWidth="100.0" text="Clear" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#buttonCancelPressed" prefHeight="50.0" prefWidth="100.0" text="Cancel" />
+         </HBox>
+      </VBox>
+   </AnchorPane>
+</StackPane>

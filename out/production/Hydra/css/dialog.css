@@ -1,0 +1,46 @@
+.dialog-pane{
+  -fx-border-color: #008000;
+  -fx-border-width: 2.0px;
+ }
+
+.dialog-pane > .button-bar > .container {
+  -fx-background-color: #282321;
+}
+
+.dialog-pane > .content.label {
+   -fx-padding: 0.5em 0.5em 0.5em 0.5em;
+   -fx-background-color: #282321;
+   -fx-text-fill: white;
+   -fx-font-size: 15.0px;
+   -fx-font-weight: bold;
+}
+
+.dialog-pane:header .header-panel {
+  -fx-background-color: #282321;
+}
+
+.dialog-pane:header .header-panel .label{
+  -fx-background-color: #282321;
+  -fx-background-radius: 10px;
+  -fx-text-fill: #008000;
+  -fx-font-size: 15.0px;
+  -fx-font-weight: bold;
+}
+
+.dialog-pane .button{
+   -fx-background-color:
+    #090a0c,
+    linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+    linear-gradient(#20262b, #191d22),
+    radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+   -fx-text-fill: white;
+   -fx-wrap-text: true;
+   -fx-effect: dropshadow( three-pass-box, #008000, 10.0, 0.0, 0.0, 0.0);
+   -fx-cursor: hand;
+ }
+
+.dialog-pane .button:hover{
+  -fx-background-color: white;
+  -fx-text-fill: black;
+  -fx-font-weight: bold;
+ }

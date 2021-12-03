@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
+
+<StackPane fx:id="rootStackPane" minHeight="576.0" minWidth="1024.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SalesController">
+   <AnchorPane minHeight="576.0" minWidth="1024.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: DIMGRAY;">
+      <ImageView fx:id="imageBackground" pickOnBounds="true">
+         <Image url="@../images/hydraBG.png" />
+      </ImageView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="150.0">
+         <VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="50.0" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
+               <Label text="Customer:" textFill="WHITE">
+                  <font>
+                     <Font size="27.0" />
+                  </font>
+               </Label>
+               <Label fx:id="customerNameText" text="Placeholder" textFill="#ebebeb">
+                  <font>
+                     <Font size="27.0" />
+                  </font>
+               </Label>
+               <Button fx:id="invoiceCustomerButton" mnemonicParsing="false" onAction="#invoiceCustomerButtonPressed" text="Add Customer" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="850.0" spacing="10.0">
+               <Label text="Item/Product:" textFill="WHITE" />
+               <SearchableComboBox fx:id="addItemComboBox" maxHeight="34.0" prefHeight="25.0" prefWidth="302.0">
+                  <padding>
+                     <Insets bottom="7.0" left="20.0" right="20.0" top="7.0" />
+                  </padding>
+               </SearchableComboBox>
+               <Button defaultButton="true" mnemonicParsing="false" onAction="#addToInvoiceButtonClicked" text="Add to invoice" />
+               <Button disable="true" mnemonicParsing="false" onAction="#visualPOSMenuButtonPressed" text="Visual POS Menu" visible="false" />
+            </HBox>
+            <HBox prefHeight="435.0" prefWidth="935.0">
+               <AnchorPane prefHeight="428.0" prefWidth="5800.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <TableView fx:id="invoiceTableView" prefHeight="426.0" prefWidth="880.0">
+                        <columns>
+                           <TableColumn fx:id="skuColumn" prefWidth="75.0" text="SKU" />
+                           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="NAME" />
+                           <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="DESCRIPTION" />
+                           <TableColumn fx:id="priceColumn" prefWidth="75.0" text="PRICE" />
+                           <TableColumn fx:id="taxColumn" prefWidth="75.0" text="TAX" />
+                           <TableColumn fx:id="discountColumn" prefWidth="75.0" text="DISCOUNT" />
+                           <TableColumn fx:id="subTotalColumn" prefWidth="105.0" text="ITEM SUBTOTAL" />
+                           <TableColumn fx:id="removeButtonColumn" minWidth="20.0" prefWidth="20.0" text="REMOVE" />
+                        </columns>
+                     </TableView>
+                     <Pane prefWidth="300.0" style="-fx-background-color: white;">
+                        <HBox.margin>
+                           <Insets top="200.0" />
+                        </HBox.margin>
+                        <VBox prefHeight="208.0" prefWidth="300.0">
+                           <VBox>
+                              <HBox spacing="15.0">
+                                 <Label text="Items Total:" />
+                                 <Label fx:id="itemsTotalText" text="\$334.32" />
+                              </HBox>
+                              <HBox spacing="15.0">
+                                 <Label text="Taxes Total:" />
+                                 <Label fx:id="taxesTotalText" text="\$23.40" />
+                              </HBox>
+                              <HBox spacing="15.0">
+                                 <Label text="Discounts Total:" />
+                                 <Label fx:id="discountsTotalText" text="($38.34)" />
+                              </HBox>
+                           </VBox>
+                           <VBox>
+                              <Label text="Grand Total">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="grandTotalText" text="\$319.38">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="TOP_CENTER" spacing="30.0">
+                                 <Button mnemonicParsing="false" onAction="#tenderSaleButtonPressed" prefHeight="60.0" prefWidth="125.0" text="Tender Sale">
+                                    <font>
+                                       <Font size="15.0" />
+                                    </font>
+                                 </Button>
+                                 <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelSaleButtonPressed" prefHeight="60.0" prefWidth="125.0" text="Cancel Sale">
+                                    <font>
+                                       <Font size="15.0" />
+                                    </font>
+                                 </Button>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </VBox>
+                        </VBox>
+                     </Pane>
+                  </HBox>
+               </AnchorPane>
+            </HBox>
+         </VBox>
+      </HBox>
+      <StackPane fx:id="stackPaneMenu" alignment="TOP_LEFT" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <Button fx:id="menuButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#menuButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;">
+            <graphic>
+               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/hamburgerMenuButton.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttMainMenu" text="Main Menu" />
+            </tooltip>
+         </Button>
+         <Button fx:id="salesButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#salesButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;" visible="false">
+            <graphic>
+               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/dollarSign.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttSales" text="Sales" />
+            </tooltip>
+         </Button>
+         <Button fx:id="customersButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#customersButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;" visible="false">
+            <graphic>
+               <ImageView pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/customersIcon.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttCustomers" text="Customers" />
+            </tooltip>
+         </Button>
+         <Button fx:id="inventoryButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#inventoryButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;" visible="false">
+            <graphic>
+               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/inventoryIcon.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttInventory" text="Inventory" />
+            </tooltip>
+         </Button>
+         <Button fx:id="reportsButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#reportsButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;" visible="false">
+            <graphic>
+               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/reportsIcon.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttReports" text="Reports" />
+            </tooltip>
+         </Button>
+         <Button fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="50.0" maxWidth="50.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#settingsButtonClicked" style="-fx-background-radius: 100; -fx-background-color: green;" visible="false">
+            <graphic>
+               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/settingsIcon.png" />
+               </ImageView>
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="ttSettings" text="Settings" />
+            </tooltip>
+         </Button>
+      </StackPane>
+      <StackPane fx:id="paneCurrentUser" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <Rectangle arcHeight="30.0" arcWidth="30.0" fill="GREEN" height="100.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+         <VBox alignment="CENTER">
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <Label text="User:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="labelUserName" text="None">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+            </HBox>
+            <Button fx:id="buttonLogOut" mnemonicParsing="false" onAction="#buttonLogOutPressed" text="Log Out">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+         </VBox>
+      </StackPane>
+   </AnchorPane>
+</StackPane>
